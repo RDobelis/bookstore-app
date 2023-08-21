@@ -49,7 +49,7 @@ public class BookTest {
     @Test
     public void testEqualsWithNull() {
         Book book = new Book("Test Book", LocalDateTime.now());
-        assertNotEquals(book, null);
+        assertNotEquals(null, book);
     }
 
     @Test
