@@ -1,7 +1,6 @@
 package com.bookstore.controller;
 
-import java.util.List;
-
+import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -21,9 +20,12 @@ public class BookController {
     }
 
     @GetMapping("/")
-    public String index(Model model) {
-        List<Book> books = bookService.getAllBooks();
-        model.addAttribute("books", books);
+    public String index(Model model, @RequestParam(defaultValue = "0") int page,
+            @RequestParam(defaultValue = "50") int size) {
+        Page<Book> books = bookService.getAllBooks(page, size);
+        model.addAttribute("books", books.getContent());
+        model.addAttribute("totalPages", books.getTotalPages());
+        model.addAttribute("currentPage", page);
         return "index";
     }
 
@@ -31,10 +33,10 @@ public class BookController {
     public String addBook(@RequestParam String name, Model model) {
         try {
             Book book = bookService.addBook(name);
-            model.addAttribute("Success", "Book added successfully: " + book.getName());
+            model.addAttribute("success", "Book added successfully: " + book.getName());
         } catch (IllegalArgumentException e) {
-            model.addAttribute("Error", e.getMessage());
+            model.addAttribute("error", e.getMessage());
         }
-        return index(model);
+        return index(model, 0, 50);
     }
 }

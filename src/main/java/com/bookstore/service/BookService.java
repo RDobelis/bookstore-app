@@ -1,9 +1,11 @@
 package com.bookstore.service;
 
 import java.time.LocalDateTime;
-import java.util.List;
-import java.util.Optional;
 
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -21,8 +23,7 @@ public class BookService {
 
     @Transactional
     public Book addBook(String name) {
-        Optional<Book> existingBook = bookRepository.findByName(name);
-        if (existingBook.isPresent()) {
+        if (bookRepository.findByName(name).isPresent()) {
             throw new IllegalArgumentException("A book with this name already exists.");
         }
 
@@ -31,7 +32,8 @@ public class BookService {
     }
 
     @Transactional(readOnly = true)
-    public List<Book> getAllBooks() {
-        return bookRepository.findAllByOrderByDateAddedDesc();
+    public Page<Book> getAllBooks(int page, int size) {
+        Pageable pageable = PageRequest.of(page, size, Sort.by(Sort.Order.desc("dateAdded")));
+        return bookRepository.findAllByOrderByDateAddedDesc(pageable);
     }
 }

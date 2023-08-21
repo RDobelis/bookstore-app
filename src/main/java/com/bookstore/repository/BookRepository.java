@@ -1,14 +1,14 @@
 package com.bookstore.repository;
 
-import java.util.List;
+import com.bookstore.model.Book;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.repository.PagingAndSortingRepository;
+
 import java.util.Optional;
 
-import org.springframework.data.jpa.repository.JpaRepository;
-
-import com.bookstore.model.Book;
-
-public interface BookRepository extends JpaRepository<Book, Long> {
+public interface BookRepository extends PagingAndSortingRepository<Book, Long> {
     Optional<Book> findByName(String name);
 
-    List<Book> findAllByOrderByDateAddedDesc();
+    Page<Book> findAllByOrderByDateAddedDesc(Pageable pageable);
 }

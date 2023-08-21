@@ -39,6 +39,14 @@
             </tr>
         </tbody>
     </table>
+
+    <div>
+        <ul>
+            <li th:each="i : ${#numbers.sequence(0, totalPages)}">
+                <a th:href="@{/(page=${i}, size=50)}" th:text="${i + 1}"></a>
+            </li>
+        </ul>
+    </div>
 </body>
 
 </html>
