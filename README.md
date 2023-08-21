@@ -45,4 +45,18 @@ This is a Java-based web application that allows an admin user to add new books 
 4. Run the application: `java -jar target/bookstore-<version>.jar`
 5. Access the application in a web browser at `http://localhost:8080`
 
+## Accessing the Application
+
+1. **Run the application**: Follow the steps in the Setup Guide to run the application.
+2. **Find the generated password**: After starting the application, check the console output for a line that looks like the following:
+
+   ```
+   Using generated security password: 78fa095d-3f4c-48b1-ad50-e24c31d5cf35
+   ```
+
+   The password will be different each time you run the application.
+
+3. **Access the application in a web browser**: Open a web browser and go to `http://localhost:8080`.
+4. **Log in**: When prompted, use the username `user` and the generated password from step 2 to log in.
+
 Note: The application uses an H2 in-memory database, which is suitable for development and testing purposes. The database is automatically configured and does not require any external setup. Data is stored in memory and not persisted.
