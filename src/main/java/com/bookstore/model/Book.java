@@ -8,6 +8,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Version;
 
 @Entity
 public class Book {
@@ -18,6 +19,9 @@ public class Book {
     @Column(unique = true)
     private String name;
     private LocalDateTime dateAdded;
+
+    @Version
+    private Long version;
 
     public Book() {
     }
@@ -51,6 +55,14 @@ public class Book {
         this.dateAdded = dateAdded;
     }
 
+    public Long getVersion() {
+        return version;
+    }
+
+    public void setVersion(Long version) {
+        this.version = version;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o)
@@ -74,6 +86,7 @@ public class Book {
                 "id=" + id +
                 ", name='" + name + '\'' +
                 ", dateAdded=" + dateAdded +
+                ", version=" + version +
                 '}';
     }
 }
