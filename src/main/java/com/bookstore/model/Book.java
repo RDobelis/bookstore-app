@@ -20,9 +20,6 @@ public class Book {
     private String name;
     private LocalDateTime dateAdded;
 
-    @Version
-    private Long version;
-
     public Book() {
     }
 
@@ -55,14 +52,6 @@ public class Book {
         this.dateAdded = dateAdded;
     }
 
-    public Long getVersion() {
-        return version;
-    }
-
-    public void setVersion(Long version) {
-        this.version = version;
-    }
-
     @Override
     public boolean equals(Object o) {
         if (this == o)
@@ -85,8 +74,6 @@ public class Book {
         return "Book{" +
                 "id=" + id +
                 ", name='" + name + '\'' +
-                ", dateAdded=" + dateAdded +
-                ", version=" + version +
-                '}';
+                ", dateAdded=" + dateAdded + '}';
     }
 }
