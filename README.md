@@ -42,7 +42,7 @@ This is a Java-based web application that allows an admin user to add new books 
 1. Install the required software.
 2. Clone or download the provided application source code.
 3. Compile and package the application using Maven: `mvn clean package`
-4. Run the application: `java -jar target/bookstore-<version>.jar`
+4. Run the application: `java -jar target/bookstore-0.0.1-SNAPSHOT.jar`
 5. Access the application in a web browser at `http://localhost:8080`
 
 ## Accessing the Application
